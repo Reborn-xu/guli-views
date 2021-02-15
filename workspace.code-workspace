@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "..\\..\\BaiduNetdiskDownload\\guliShop\\day04\\前端代码"
+		}
+	],
+	"settings": {
+		"liveServer.settings.multiRootWorkspaceName": "guli"
+	}
+}

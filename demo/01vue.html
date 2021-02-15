@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app">
+          <!-- {{}} 插值表达式，绑定vue中的data数据 -->
+          {{message}}
+        <button v-on:click="search()">
+            查询
+        </button>
+        <button @click="search()">
+            查询
+        </button>
+        <form action="a" v-on:submit.prevent='onsubmit()'>
+            <input type="text" id="name" v-model="user.username"/>
+            <button type="submit">保存</button>
+        </form>
+    </div>
+    
+
+    <script src="vue.min.js"></script>
+
+    <script>
+        // 创建一个vue对象
+        new Vue({
+            el: '#app',//绑定vue作用的范围
+            data: {//定义页面中显示的模型数据
+                message: 'Hello Vue!',
+                user:{
+                    username: 'zhangsan'
+                }
+            },
+            methods: {
+                search(){
+                    console.log("1");
+                },
+                onsubmit(){
+                    if(this.user.username=='li'){
+                        alert('li');
+                    }else{
+                        console.log('fail');
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>

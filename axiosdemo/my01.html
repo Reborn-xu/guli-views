@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <!--把userList数组里面数据显示 使用v-for指令 -->
+        <div v-for="(u,index) in userList">
+            {{index}} --{{u.name}} -- {{u.age}}
+        </div>
+    </div>
+    <script src="vue.min.js"></script>
+    <script src="axios.min.js"></script>
+    <script>
+        new Vue({
+            el: '#app',
+            //固定的结构
+            data: { //在data定义变量和初始值
+                //定义变量，值空数组
+                userList:[]
+            },
+            created() { //页面渲染之前执行
+                //调用定义的方法
+                this.getUserList()
+            },
+            methods:{//编写具体的方法
+                //创建方法 查询所有用户数据
+                getUserList(){
+                    axios.get("data.json")
+                        .then(response => {
+                            console.log(response);
+                            this.userList = response.data.data.items;
+                        })
+                        .catch(error => {
+                            console.log(error);
+                        })
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>
