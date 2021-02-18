@@ -5,9 +5,12 @@
 		},
 		{
 			"path": "..\\..\\BaiduNetdiskDownload\\guliShop\\day04\\前端代码"
+		},
+		{
+			"path": "..\\..\\BaiduNetdiskDownload\\guliShop\\day03\\前端"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "guli"
+		"liveServer.settings.multiRootWorkspaceName": "前端"
 	}
 }
