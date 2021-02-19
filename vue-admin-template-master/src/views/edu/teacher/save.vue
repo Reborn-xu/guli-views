@@ -5,7 +5,7 @@
         <el-input v-model="teacher.name"/>
       </el-form-item>
       <el-form-item label="讲师排序">
-        <el-input-number v-model="teacher.sort" controls-position="right" min="0"/>
+        <el-input-number v-model="teacher.sort" controls-position="right" :min="0"/>
       </el-form-item>
       <el-form-item label="讲师头衔">
         <el-select v-model="teacher.level" clearable placeholder="请选择">
@@ -51,38 +51,66 @@ export default {
         };
     },
     created(){//页面渲染前执行，一般调用methods的方法
-        //使用路由获取路径参数，判断是save还是update
-        if(this.$router.params && this.$router.params.id){
-            const id = this.$router.params.id;
-            getInfoById(id);
-        }
+        this.init();
+    },
+    watch: {
+      $route(to, from) {
+        console.log('watch $route');
+        this.init();
+      }
     },
     methods:{
+        init(){
+          //使用路由获取路径参数，判断是save还是update
+          if(this.$route.params && this.$route.params.id){
+              const id = this.$route.params.id;
+              this.getInfoById(id);
+          }else {
+            this.teacher={};
+          }
+        },
         getInfoById(id){
             teacher.getInfoById(id)
                 .then(response => {
                     this.teacher = response.data.teacher;
-                })
+                });
         },
         saveOrUpdate(){
             //禁用按钮，防止多次提交
             this.saveBtnDisabled=true;
             //判断事添加还是更新
-
-            this.saveTeacher();
+            if(this.teacher.id){
+              this.updateTeacher();
+            }else{
+              this.saveTeacher();
+            }
+            
         },
         saveTeacher(){
-            teacher.addTeacher(this.teacher)
-                .then(response => {
-                    this.$message({
-                        type: 'success',
-                        message: '添加成功!'
-                    });
-                    //路由跳转
-                    this.$router.push({
-                        path:'/teacher/list'
-                    });
-                })
+          teacher.addTeacher(this.teacher)
+            .then(response => {
+                this.$message({
+                    type: 'success',
+                    message: '添加成功!'
+                });
+                //路由跳转
+                this.$router.push({
+                    path:'/teacher/list'
+                });
+            })
+        },
+        updateTeacher(){
+          teacher.updateTeacher(this.teacher)
+            .then(response =>{
+              this.$message({
+                type: 'success',
+                message: '修改成功!'
+              });
+              //路由跳转
+              this.$router.push({
+                path:'/teacher/list'
+              });
+            })
         }
     }
 }
