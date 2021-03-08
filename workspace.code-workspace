@@ -8,9 +8,12 @@
 		},
 		{
 			"path": "..\\..\\BaiduNetdiskDownload\\guliShop\\day03\\前端"
+		},
+		{
+			"path": "..\\..\\BaiduNetdiskDownload\\angular\\angular\\code\\AngularTest"
 		}
 	],
 	"settings": {
-		"liveServer.settings.multiRootWorkspaceName": "前端"
+		"liveServer.settings.multiRootWorkspaceName": "AngularTest"
 	}
 }
